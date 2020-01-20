@@ -3,22 +3,36 @@ package com.thoughtworks;
 import java.util.Arrays;
 
 public class GuessNumber {
+    private static String ERROR_MSG = "Wrong Input, input again";
     private KeyManager keyManager;
+    private String args;
 
     GuessNumber(KeyManager keyManager) {
         this.keyManager = keyManager;
     }
 
-    public String guess(final String args) {
-        String[] input = args.split(" ");
-        int[] numbers = new int[4];
-        for (int i = 0; i < input.length; i++) {
-            numbers[i] = Integer.parseInt(input[i]);
+    public String guess(String args) {
+        this.setArgs(args);
+        if (!this.isValid()) {
+            return ERROR_MSG;
         }
+        int[] numbers = parseNumbers();
         int valueAndPositionCorrectCount = countValueAndPositionCorrect(numbers);
         int onlyValueCorrectCount = countOnlyValueCorrect(numbers);
         return String.join("", String.valueOf(valueAndPositionCorrectCount), "A", String.valueOf(onlyValueCorrectCount),
                 "B");
+    }
+
+    private int[] parseNumbers() {
+        if (this.isValid()) {
+            return Arrays.stream(this.args.split(" ")).mapToInt(number -> Integer.valueOf(number)).toArray();
+        }
+        return new int[] {};
+    }
+
+    private boolean isValid() {
+        String[] numbers = this.args.split(" ");
+        return Utils.isNumeric(numbers) && !Utils.isDuplicate(numbers);
     }
 
     private int countOnlyValueCorrect(int[] numbers) {
@@ -40,4 +54,13 @@ public class GuessNumber {
         }
         return matchCount;
     }
+
+    public String getArgs() {
+        return args;
+    }
+
+    public void setArgs(String args) {
+        this.args = args;
+    }
+
 }
