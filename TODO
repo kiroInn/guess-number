@@ -1,8 +1,13 @@
 
 Todo:
-  ✔ 处理错误的输入数字重复 @started(20-01-20 15:12) @done(20-01-20 16:37) @lasted(1h25m51s)
-  ✔ 处理错误的输入非数字 @started(20-01-20 16:38) @done(20-01-20 16:38) @lasted(4s)
-  ☐ 
+  ☐ handle only correct not all correct instruction @started(20-01-20 16:48)
+  ☐ handle only wrong positon instruction
+  ☐ handle both correct number and worong postion instruction
+  ☐ handle all wrong instruction
+  ☐ handle 4 numbers position wrong instruction
+  ☐ handle all correct instruction
 Archive:
+  ✔ 处理错误的输入数字重复 @started(20-01-20 15:12) @done(20-01-20 16:37) @lasted(1h25m51s) @project(Todo)
+  ✔ 处理错误的输入非数字 @started(20-01-20 16:38) @done(20-01-20 16:38) @lasted(4s) @project(Todo)
   ✔ 计算前面的数字代表位置和数字都对的个数A @started(20-01-18 23:06) @done(20-01-18 23:56) @lasted(50m55s) @project(Todo)
   ✔ 计算前面的数字代表数字对但是位置不对的个数B @started(20-01-19 23:35) @done(20-01-19 23:55) @lasted(20m32s) @project(Todo)

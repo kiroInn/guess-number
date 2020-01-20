@@ -51,4 +51,13 @@ public class GuessNumberTest {
         assertEquals("Wrong Input, input again", guessNumber.guess("x s 2 1"));
         assertEquals("Wrong Input, input again", guessNumber.guess("x 1 2 3"));
     }
+
+    @Test
+    public void should_return_correct_number_when_given_only_one_correct_number() {
+        KeyManager keyStone = mock(KeyManager.class);
+        when(keyStone.getKeys()).thenReturn(new int[]{1,2,3,4});
+        GuessNumber guessNumber = new GuessNumber(keyStone);
+
+        assertEquals("1A0B 1 correct", guessNumber.guess("1 5 6 7"));
+    }
 }

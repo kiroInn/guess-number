@@ -12,15 +12,20 @@ public class GuessNumber {
     }
 
     public String guess(String args) {
-        this.setArgs(args);
-        if (!this.isValid()) {
-            return ERROR_MSG;
+        init(args);
+        if (this.isValid()) {
+            int[] numbers = parseNumbers();
+            return result(countCorrectNumberAndPosition(numbers), countCorrectOnlyNumber(numbers));
         }
-        int[] numbers = parseNumbers();
-        int valueAndPositionCorrectCount = countValueAndPositionCorrect(numbers);
-        int onlyValueCorrectCount = countOnlyValueCorrect(numbers);
-        return String.join("", String.valueOf(valueAndPositionCorrectCount), "A", String.valueOf(onlyValueCorrectCount),
-                "B");
+        return ERROR_MSG;
+    }
+
+    private void init(String args) {
+        this.setArgs(args);
+    }
+
+    private String result(int correctCount, int correctOnlyNumber) {
+        return String.join("", String.valueOf(correctCount), "A", String.valueOf(correctOnlyNumber), "B");
     }
 
     private int[] parseNumbers() {
@@ -35,7 +40,7 @@ public class GuessNumber {
         return Utils.isNumeric(numbers) && !Utils.isDuplicate(numbers);
     }
 
-    private int countOnlyValueCorrect(int[] numbers) {
+    private int countCorrectOnlyNumber(int[] numbers) {
         int[] keys = this.keyManager.getKeys();
         int matchCount = 0;
         for (int i = 0; i < keys.length; i++) {
@@ -46,7 +51,7 @@ public class GuessNumber {
         return matchCount;
     }
 
-    private int countValueAndPositionCorrect(int[] numbers) {
+    private int countCorrectNumberAndPosition(int[] numbers) {
         int[] keys = this.keyManager.getKeys();
         int matchCount = 0;
         for (int i = 0; i < keys.length; i++) {
